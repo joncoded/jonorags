@@ -1,0 +1,10 @@
+streamlit
+dotenv
+pinecone
+openai
+langchain_community
+langchain_text_splitters
+numpy==1.26.4
+pypdf2
+pypdf
+torch

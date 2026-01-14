@@ -1,4 +1,4 @@
-# jonorags by @joncoded
+# jonorags by @joncoded (aka @jonchius)
 # app.py
 # requirements:
 # - input PDF documents and get a variable-sized summary
@@ -7,6 +7,7 @@
 # goals:
 # - document summary of single document
 # - document summary of multiple documents
+# enhancements:
 # - adjustable summary length
 # - sentiment analysis
 # - find named entities
