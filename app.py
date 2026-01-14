@@ -1,4 +1,4 @@
-# jonsrags by @joncoded
+# jonorags by @joncoded
 # app.py
 # requirements:
 # - input PDF documents and get a variable-sized summary
@@ -7,9 +7,7 @@
 # goals:
 # - document summary of single document
 # - document summary of multiple documents
-# stretch goals:
 # - adjustable summary length
-# - find out what documents have in common
 # - sentiment analysis
 # - find named entities
 
@@ -100,7 +98,6 @@ with st.expander("Settings", expanded=True, icon="⚙️"):
 
 uploaded_files = st.file_uploader("Upload 1+ PDF files to summarize", type=["pdf"], accept_multiple_files=True)
 
-
 # ===== HANDLE UPLOAD(S)
 
 if uploaded_files:
@@ -175,6 +172,7 @@ if uploaded_files:
     import uuid
     for i, (doc, vec) in enumerate(zip(docs, embeddings_list)):
         vectors.append({
+            # yes this part was vibe coded tbh
             "id": f"{doc.metadata.get('source','doc')}-{i}-{uuid.uuid4().hex[:8]}",
             "values": vec,
             "metadata": {
@@ -186,8 +184,9 @@ if uploaded_files:
     
     namespace = '__default__'
 
-    # clear the namespace to start a new session
-    try:
+    # clear the namespace of the vector database to start a new session
+    # (didn't want to have previous documents interfere with new ones)
+    try:        
         index.delete(delete_all=True, namespace=namespace)
     except Exception as e:
         st.warning(f"Could not clear namespace: {e}")
