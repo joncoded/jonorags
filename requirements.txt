@@ -8,3 +8,4 @@ numpy==1.26.4
 pypdf2
 pypdf
 torch
+sentence-transformers
