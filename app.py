@@ -16,8 +16,23 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-key_myllm = os.getenv("GROQ_API_KEY").strip()
-key_vecdb = os.getenv("PINECONE_API_KEY").strip()
+
+# get API keys from environment variables
+key_myllm = os.getenv("GROQ_API_KEY")
+key_vecdb = os.getenv("PINECONE_API_KEY")
+
+# validate API keys
+if not key_myllm or not key_myllm.strip():
+    st.error("❌ Missing GROQ_API_KEY! Please create a `.env` file in your project root with:\n\n`GROQ_API_KEY=your_groq_api_key_here`")
+    st.stop()
+
+if not key_vecdb or not key_vecdb.strip():
+    st.error("❌ Missing PINECONE_API_KEY! Please create a `.env` file in your project root with:\n\n`PINECONE_API_KEY=your_pinecone_api_key_here`")
+    st.stop()
+
+# use strip in case there are leading/trailing spaces
+key_myllm = key_myllm.strip()
+key_vecdb = key_vecdb.strip()
 
 # === VECTOR DB CONNECTION
 from pinecone import Pinecone
