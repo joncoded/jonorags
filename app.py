@@ -224,7 +224,7 @@ if uploaded_files:
     # summarize each uploaded file according to user settings
     for uploaded_file in uploaded_files:
 
-        with st.expander(f"Summary of {uploaded_file.name}", expanded=False):
+        with st.expander(f"Summary of {uploaded_file.name} (click to show/hide)", expanded=False):
 
             sentiment_subprompt = ""  
             summary_prompt = f"""
