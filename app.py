@@ -104,7 +104,7 @@ st.markdown(
 
 # sticky header hack
 def header(content):
-     st.markdown(f"""
+    st.markdown(f"""
                 <div style="position:fixed; top:60px; left:0; width:100%; background-color:#222; color:#fff; padding:5px; z-index:9999">
                     <div style="display:flex; justify-content:center; align-items:center;">
                         {content}
@@ -204,11 +204,14 @@ def file_hash(uploaded_file):
     uploaded_file.seek(0)
     return h
 
+# process the files and ingest into vector DB
 def ingest_files(uploaded_files):
     documents = []
     files_loaded = 0 
 
     for uploaded_file in uploaded_files:
+
+        # load PDF file
         with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
             tmp.write(uploaded_file.getvalue())
             tmp.flush()
@@ -221,7 +224,7 @@ def ingest_files(uploaded_files):
         for d in file_docs:
             d.metadata["source"] = uploaded_file.name
 
-        # Store the combined content with the file hash
+        # store the combined content with the file hash
         combined_content = "\n\n".join(d.page_content for d in file_docs)
         h = file_hash(uploaded_file)
         st.session_state.doc_contents[h] = combined_content
@@ -230,16 +233,18 @@ def ingest_files(uploaded_files):
 
     st.write(f"📜 {text["pages_processed"]}:", len(documents))
 
-    splitter = RecursiveCharacterTextSplitter(chunk_size=800, chunk_overlap=150)
-    
+    # text splitting
+    splitter = RecursiveCharacterTextSplitter(chunk_size=800, chunk_overlap=150)    
     st.write(f"⚙️ {text["splitting_documents"]}")
     docs = splitter.split_documents(documents)
     embeddings = HuggingFaceEmbeddings(model_name="intfloat/e5-base")
     
+    # chunk loading
     st.write(f"⚙️ {text["loading_chunks"]}")      
     texts = [d.page_content for d in docs]
     vectors_emb = embeddings.embed_documents(texts)
 
+    # vector upsert preparation
     vectors = []
     for i, (doc, vec) in enumerate(zip(docs, vectors_emb)):
         vectors.append({
@@ -259,13 +264,12 @@ def ingest_files(uploaded_files):
         if "not found" not in str(e).lower():
             st.warning(f"Could not clear namespace: {e}")
     
+    # take the vectors and upsert into pinecone
     index.upsert(vectors=vectors, namespace=namespace)
 
     return embeddings
 
-def summarize_document(content):
-    
-    """Summarize document content using the LLM."""
+def summarize_document(content):    
     
     if not content or len(content.strip()) == 0:
         return "⚠️ " + text["no_content_to_summarize"]
