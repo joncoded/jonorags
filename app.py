@@ -416,7 +416,7 @@ if st.session_state.embeddings:
             model=use_myllm,
             max_tokens=max_tokens,
             messages=[
-                {"role": "system", "content": "Answer using the provided context."},
+                {"role": "system", "content": "Answer using the provided context in 6 sentences or less. If necessary, answer in more but try to be as concise as possible. If you do not know the answer, then say you don't know."},
                 {"role": "user", "content": prompt}
             ]
         )
