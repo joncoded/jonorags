@@ -3,6 +3,7 @@ dotenv
 pinecone
 openai
 langchain_community
+langchain_huggingface
 langchain_text_splitters
 numpy==1.26.4
 pypdf2
