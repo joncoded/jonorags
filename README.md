@@ -26,6 +26,8 @@ configure your `.env` file on the root folder (this must be done or the code wil
 ```
 LLM_API_KEY=your_groq_api_key
 PINECONE_API_KEY=your_pinecone_api_key
+PINECONE_HOST=your_pinecone_host_url
+PINECONE_INDEX=your_pinecone_index_name
 ```
 
 ### run it!
