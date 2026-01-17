@@ -152,7 +152,7 @@ if "should_scroll" not in st.session_state:
 # USER CONFIGURATION
 # =========================================================
 
-st.write("## 📑 Upload documents")
+st.write(f"## 📑 {text['upload_documents']}")
 
 uploaded_files = st.file_uploader(
     text["upload_instructions"],

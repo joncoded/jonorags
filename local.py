@@ -38,6 +38,7 @@ l = {
     "summary_of_documents" : "Summary of documents", 
     "thinking" : "Thinking...",
     "files_and_settings" : "Change files and settings...", 
+    "upload_documents" : "Upload documents",
     "upload_instructions" : "Upload 1+ PDF files to summarize"
   }
 }
