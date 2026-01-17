@@ -24,6 +24,8 @@ from local import *
 from pinecone import Pinecone
 from openai import OpenAI
 from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyMuPDFLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 load_dotenv()
@@ -237,8 +239,24 @@ def ingest_files(uploaded_files):
             with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
                 tmp.write(uploaded_file.getvalue())
                 tmp.flush()
-                loader = PyPDFLoader(tmp.name)
-                file_docs = loader.load()
+                
+                try:
+                    loader = PyPDFLoader(tmp.name)
+                    file_docs = loader.load()
+                except KeyError as e:
+                    if 'bbox' in str(e):                        
+                        from langchain_community.document_loaders import PyMuPDFLoader
+                        try:
+                            loader = PyMuPDFLoader(tmp.name)
+                            file_docs = loader.load()
+                        except Exception as fallback_error:
+                            st.error(f"❌ Could not process {uploaded_file.name}: {str(fallback_error)}")
+                            continue
+                    else:
+                        raise
+                except Exception as e:
+                    st.error(f"❌ Error loading {uploaded_file.name}: {str(e)}")
+                    continue
 
             files_loaded += 1
             st.write(f"⏳ {text["processed_file"]}: {files_loaded}/{len(uploaded_files)}: {uploaded_file.name} ...")            

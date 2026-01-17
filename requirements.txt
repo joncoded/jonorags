@@ -10,3 +10,4 @@ pypdf2
 pypdf
 torch
 sentence-transformers
+pymupdf
