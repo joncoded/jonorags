@@ -24,7 +24,7 @@ run the following commands on your command line:
 configure your `.env` file on the root folder (this must be done or the code will tell you to):
 
 ```
-GROQ_API_KEY=your_groq_api_key
+LLM_API_KEY=your_groq_api_key
 PINECONE_API_KEY=your_pinecone_api_key
 ```
 
@@ -35,3 +35,8 @@ finally, back in the command line, run the app:
 ```
 streamlit run app.py
 ```
+
+### localization
+
+* translate the app into your language with the `local.py` dictionary file
+* go to `app.py` and change the `text` variable, e.g. `l['en']` to `l['fr']` for French
