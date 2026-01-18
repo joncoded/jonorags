@@ -4,6 +4,7 @@
 
 l = {
   "en" : {
+    "tagline" : "pdf summarizer and discusser by @joncoded",
     "ask_question" : "Ask a question", 
     "bullets" : "Bullet points",
     "discussion_history" : "Discussion history",
@@ -46,8 +47,9 @@ l = {
     "no": "No"
   },
   "fr": {      
+    "tagline" : "machine de résumé et discussion des documents PDF par @joncoded",
     "ask_question" : "Veuillez poser une question (en anglais seulement pour l'instant)", 
-    "bullets" : "Points de balle",
+    "bullets" : "Puces en liste",
     "discussion_history" : "Historique de la discussion",
     "could_not_clear_namespace" : "Impossible de vider l'espace de noms", 
     "files_uploaded" : "Fichier(s) téléchargé(s)",
