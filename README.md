@@ -64,3 +64,24 @@ streamlit run app.py
 
 * translate the app into your language with the `local.py` dictionary file
 * go to `app.py` and check/change the `lang_options` variable
+
+### contribute
+
+* clone the repository as mentioned above
+* create a feature branch
+  * `git checkout -b feature/branch`
+* make and commit your changes
+  * `git commit -m "what you changed"`
+* push your changes
+  * `git push origin feature/branch`
+* open pull request
+  * https://github.com/joncoded/esleasel/pulls 
+
+### credits
+
+* [Groq](https://groq.com) for LLMs
+* [Pinecone](https://pinecone.io) for vector databases
+* [Langchain](https://www.langchain.com) for its AI agent platform 
+* [Streamlit](https://share.streamlit.io) for its super-easy deployment 
+* [Google Gemini](https://share.google/aimode/7qI3binoXT52SrpK0) for recommending which LLM to use for analyzing English language PDFs
+* [Dr. Satyajit Pattnaik](https://www.linkedin.com/in/satyajitpattnaik/) for technical guidance
