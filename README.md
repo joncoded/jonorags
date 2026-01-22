@@ -87,7 +87,9 @@ The app will usually run with the url `http://localhost:8501`
 * push your changes
   * `git push origin feature/branch`
 * open pull request
-  * https://github.com/joncoded/esleasel/pulls 
+  * https://github.com/joncoded/docotoco/pulls 
+
+Also, feel free to [raise any issues](https://github.com/joncoded/docotoco/issues)
 
 ### Localization
 
