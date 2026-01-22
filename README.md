@@ -8,11 +8,22 @@ an LLM-powered PDF document specialist for all domains:
 - (optionally) find list of names of people and organizations
 - allows user to chat (ask questions on or perform operations about) the document
 
-## === setup
+!["screenshot of docotoco"](https://cdn.sanity.io/images/b148t9sa/production/4541597cdf1dbc85c698f08e2ee544e53eb55b23-816x996.png)
+
+## Demo (for casual users)
+
+Run the demo on [docotoco.streamlit.app](https://docotoco.streamlit.app)
+
+(If the app has "fallen asleep" then please press the "Yes, get this app back up" button to "wake" it up!)
+
+!["app has fallen" asleep](https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fhm0wrzfg9ojk6rozzl64.png)
+
+
+## Setup (for developers)
 
 ### clone repo
 
-run the following commands on your command line if you have git installed:
+Run the following commands on your command line if you have git installed:
 
 ```
 % git clone https://github.com/joncoded/docotoco.git docotoco && cd docotoco
@@ -21,7 +32,7 @@ run the following commands on your command line if you have git installed:
 
 ### .env file
 
-configure your `.env` file on the root folder (this must be done or the code will tell you to):
+Configure your `.env` file on the root folder (this must be done or the code will tell you to):
 
 ```
 LLM_API_KEY=your_groq_api_key
@@ -52,20 +63,21 @@ if you don't have these you can get them for free at:
   * `PINECONE_INDEX` : 
     * if you got the host URL you will see the pinecone index name above it
 
-### run it!
+### Runtime!
 
-finally, back in the command line, run the app:
+finally, back in the command line, run the app on your localhost with:
 
 ```
 streamlit run app.py
 ```
 
-### localization
+The app will usually run with the url `http://localhost:8501` 
 
-* translate the app into your language with the `local.py` dictionary file
-* go to `app.py` and check/change the `lang_options` variable
+(if port 8501 is already used, it will host the app on `:8502` or so on...)
 
-### contribute
+## Contribute 
+
+### Features
 
 * clone the repository as mentioned above
 * create a feature branch
@@ -77,7 +89,15 @@ streamlit run app.py
 * open pull request
   * https://github.com/joncoded/esleasel/pulls 
 
-### credits
+### Localization
+
+Translate the app into your language! 
+
+* edit the `local.py` dictionary file by adding a new language (see `en` (English) and `fr` (French) as examples
+* go to `app.py` and check/change the `lang_options` variable
+* optionally, make a pull request as if making a Feature contribution as listed above
+
+### Credits
 
 * [Groq](https://groq.com) for LLMs
 * [Pinecone](https://pinecone.io) for vector databases
